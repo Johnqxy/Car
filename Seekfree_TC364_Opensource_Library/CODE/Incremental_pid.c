@@ -135,7 +135,7 @@ void MotorAPID (int speedA)  //10
     errorA = speedA - Average_encValue;
     doubleerrorA = errorA - lasterrorA;
 
-    incA = (sint16)((4.25 * doubleerrorA + 2.0 * errorA + myCar.SpeedDA * (errorA - 2 * lasterrorA + doublelasterrorA))); //10*100
+    incA = (sint16)((5 * doubleerrorA + 2.2 * errorA + myCar.SpeedDA * (errorA - 2 * lasterrorA + doublelasterrorA))); //10*100
 
 //    uint32 temp=voltageA*100;
     duty1 = incA + duty1;//*temp/100);//*voltageA);//*2400/voltage); //1000

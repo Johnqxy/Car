@@ -10,7 +10,7 @@ short inc1;
 short inc2;
 short inc3;
 short inc4;
-int bench_v = 65;
+int bench_v = 70;
 int duty_left = 0;
 int duty_right = 0;
 
