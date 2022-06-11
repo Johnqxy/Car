@@ -134,10 +134,7 @@ void Basic_line_scan(void) {
     old = centerline[MT9V03X_H - 1];
     Pixle_ADD_My_Midline();
     Pixle_ADD_My_hengxian(10);
-    Pixle_ADD_My_hengxian(30);
-    Pixle_ADD_My_hengxian(50);
-    Pixle_ADD_My_hengxian(85);
-    Pixle_ADD_My_hengxian(70);
+
 }//初次扫线完毕，将old重新赋值
 
 
@@ -172,8 +169,7 @@ void Advanced_line_scan(void) {
                 } else if (flag_sud == 7 && dl < SSUD_TH && dl > -SSUD_TH && dr <= NSUD_TH && dr >= -SSUD_TH)
                     road_type[i] = 7;
                 else if (flag_sud == 0 && dr <= NSUD_TH && dr >= -SSUD_TH &&
-                         dl <
-                         -SSUD_TH)  //0突变到5说明出现了误判，此时要用flag_sud记录好突变发生过了，当回到正常值时5会变为0，从而消除因为图像某一行的边界错误导致最终的错误
+                         dl < -SSUD_TH)  //0突变到5说明出现了误判，此时要用flag_sud记录好突变发生过了，当回到正常值时5会变为0，从而消除因为图像某一行的边界错误导致最终的错误
                 {
                     road_type[i] = 5;
                     flag_sud = 5;
@@ -578,12 +574,14 @@ void image_distinguish(void) {
             img_type = RCIR_W_S4;
             S3S4_flag = 1;
         } else if (image_para.imgtype == LCIR_W_S4 && part_num == 2 &&
-                   (part_type[1] == 3 || part_type[1] == 6) && degree > 11000)    //利用陀螺仪与图像，当转过一般的角度，且能看到出环的图像时，置为S5阶段
+                   (part_type[1] == 3 || part_type[1] == 6 || part_type[1] == 1) &&
+                   degree > 10000)    //利用陀螺仪与图像，当转过一般的角度，且能看到出环的图像时，置为S5阶段
         {
             img_type = LCIR_W_S5;
         } else if (image_para.imgtype == LCIR_W_S4 && part_num >= 3 &&
-                   (part_type[1] == 3 || part_type[1] == 6 || part_type[2] == 3 || part_type[2] == 6) &&
-                   degree > 110000) {
+                   (part_type[1] == 3 || part_type[1] == 6 || part_type[1] == 1 || part_type[2] == 3 ||
+                    part_type[2] == 1 || part_type[2] == 6) &&
+                   degree > 10000) {
             img_type = LCIR_W_S5;
         } else if (image_para.imgtype == RCIR_W_S4 && part_num == 2 &&
                    (part_type[1] == 3 || part_type[1] == 5)) {
@@ -591,7 +589,7 @@ void image_distinguish(void) {
         } else if (image_para.imgtype == RCIR_W_S4 && part_num >= 3 &&
                    (part_type[1] == 3 || part_type[1] == 5 || part_type[2] == 3 || part_type[2] == 5)) {
             img_type = RCIR_W_S5;
-        } else if (image_para.imgtype == LCIR_W_S5 && degree > 13000)        //当转过几乎一周的角度时，认为以及出环，设置此时为S6阶段
+        } else if (image_para.imgtype == LCIR_W_S5 && degree > 14000)        //当转过几乎一周的角度时，认为以及出环，设置此时为S6阶段
         {
             img_type = LCIR_W_S6;
         } else if (image_para.imgtype == RCIR_W_S5) {
@@ -676,7 +674,7 @@ void image_distinguish(void) {
         if (image_para.imgtype == FOK_W_S3) {
             a++;
         }
-        if (a > 70) {
+        if (a > 30) {
             img_mode = 0;
             FOK_OUT_FLAG_1 = 0;
             FOK_OUT_FLAG_2 = 0;
@@ -703,17 +701,32 @@ float offset_process(void) {
 
     offset_si = 50;
     offset_ei = 35;
-    if (image_para.imgtype == LCIR_W_S1 || image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
-        image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
+
+    if (image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
+        image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
         image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
         image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 ||
-        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6) {
-        offset_si = 60;
+        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6||break_hangshu > 35) {
+        offset_si = 75;
         offset_ei = 45;
-    } else if (break_hangshu > 35) {
-        offset_ei = break_hangshu;
-        offset_si = break_hangshu + 15;
+//    } else if (break_hangshu > 35) {
+//        offset_ei = break_hangshu;
+//        offset_si = break_hangshu + 15;
+    } else if (image_para.imgtype == LCIR_W_S3) {
+        offset_si = 70;
+        offset_ei = 50;
+    } else {
+        offset_si = 50;
+        offset_ei = 35;
     }
+    if (image_para.imgtype == LCIR_W_S1 || image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
+        image_para.imgtype == LCIR_W_S3||image_para.imgtype == LCIR_W_S4||image_para.imgtype == LCIR_W_S5) {
+        bench_v = 55;
+    } else {
+        bench_v = 70;
+    }
+    Pixle_ADD_My_hengxian(offset_si);
+    Pixle_ADD_My_hengxian(offset_ei);
     //处于坡道时行数取低，防止因为远处的图像而在坡顶掉落
 //    if(flag_ramp > 20)
 //    {
@@ -761,13 +774,7 @@ float offset_process(void) {
                 break;
             }
         }
-        if (image_para.imgtype = LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5) {
-            bench_v = 60;
-        } else if (image_para.imgtype = LCIR_W_S3) {
-            bench_v = 45;
-        } else {
-            bench_v = 70;
-        }
+
         //此处边界搜索比较特殊，可以找到图像上部中间为黑色的两条三角边界，以确定车身是否走正
         for (i = MT9V03X_H - 1; i >= 10; i -= 1) {
             if (mt9v03x_image[i][MT9V03X_W / 2] == 0) {
@@ -824,23 +831,19 @@ float offset_process(void) {
         }
     } else if (image_para.imgtype == LCIR_W_S2)   //左环S2与S2_5阶段在部分时候按照左边界循迹，部分时候按照右边界循迹
     {
-        bench_v = 50;
+
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            if (leftline[i] - leftline[i + 1] < 0 && part_type[0] == 0 &&
-                leftline[i] - leftline[i + 1] > -SSUD_TH) {
-                //速度方案不同采用不同处理，为了顺利进环
-                offset += (float) (leftline[i] - ls_std[i] - 25);
-                weight += 1;
-            } else {
-                offset += (float) (rightline[i] - rs_std[i] - 25);
-                weight += 1;
-            }
+
+            offset += (float) (rightline[i] - rs_std[i] - 10);
+            weight += 1;
+
         }
     } else if (image_para.imgtype == LCIR_W_S2_5)   //左环S2与S2_5阶段在部分时候按照左边界循迹，部分时候按照右边界循迹
     {
-        bench_v = 50;
-        offset += (float) (leftline[i] - ls_std[i]);
-        weight += 1;
+        for (i = offset_si; i >= offset_ei; i -= 1) {
+            offset += (float) (leftline[i] - ls_std[i] - 15);
+            weight += 1;
+        }
     } else if (image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5) {
         for (i = offset_si; i >= offset_ei; i -= 1) {
             if (rightline[i] - rightline[i + 1] > 0 && part_type[0] == 0 &&
@@ -863,7 +866,7 @@ float offset_process(void) {
             cirsud_i = part_index[0] - 1;
         for (i = offset_si; i >= offset_ei; i -= 1) {
 
-            offset += (float) (leftline[i] - ls_std[i]);
+            offset += (float) (leftline[i] - ls_std[i] - 10);
             weight += 1;
 
         }
@@ -1048,6 +1051,7 @@ void Img_type_test() {
     image_distinguish();
     offset_process();
     calc_angle();
+
 }
 
 /***************图像灰度判断*************************/

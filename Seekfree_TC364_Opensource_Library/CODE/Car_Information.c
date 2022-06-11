@@ -85,7 +85,7 @@ void car_information_init(int mode)
 
           myCar.SpeedPA = 55.36;  //©ирт
           myCar.SpeedIA = 1.10;//0.8;
-          myCar.SpeedDA = 0;
+          myCar.SpeedDA = 0.1;
 
           myCar.SpeedPB = 55.36;
           myCar.SpeedIB = 1.10;

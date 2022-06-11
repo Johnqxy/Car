@@ -66,8 +66,8 @@ void OLED_UI(void) {
 //        oled_int16(80, 6, yaw);
         oled_p6x8str(0, 6, "degree");
         oled_int16(80, 6, degree);
-        oled_p6x8str(0, 7, "hangshu");
-        oled_int16(80, 7, break_hangshu);
+        oled_p6x8str(0, 7, "bench");
+        oled_int16(80, 7, bench_v);
 
 
 

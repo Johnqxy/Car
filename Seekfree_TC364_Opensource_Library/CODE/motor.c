@@ -46,8 +46,8 @@ void motor_limited(sint16 duty1,sint16 duty2)
 
 void motor_direction_left(int duty1)
 {
-    if(duty1>4000)  duty1 = 4000;
-    else if(duty1<-4000)  duty1 = -4000;
+    if(duty1>9000)  duty1 = 9000;
+    else if(duty1<-9000)  duty1 = -9000;
 
          if(duty1>0)
          {
@@ -64,8 +64,8 @@ void motor_direction_left(int duty1)
 }
 void motor_direction_right(int duty2)
 {
-    if(duty2>4000)  duty2 = 4000;
-        else if(duty2<-4000)  duty2 = -4000;
+    if(duty2>9000)  duty2 = 9000;
+        else if(duty2<-9000)  duty2 = -9000;
         if(duty2>0)
         {
             pwm_duty(ATOM0_CH5_P02_5, duty2 );//”“…œ∏∫
