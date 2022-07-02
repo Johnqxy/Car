@@ -19,6 +19,7 @@
 
 #include "Cpu0_Main.h"
 #include "headfile.h"
+#include "stdlib.h"
 #pragma section all "cpu0_dsram"
 //将本语句与#pragma section all restore语句之间的全局变量都放在CPU0的RAM中
 
@@ -37,14 +38,14 @@ int core0_main(void)
 {
     get_clk();//获取时钟频率  务必保留
     //用户在此处调用各种初始化函数等
-    uart_init(UART_0,115200,UART0_TX_P14_0,UART0_RX_P14_1);       // 初始化串口0 波特率115200 发送引脚使用P14_0 接收引脚使用P14_1
-//    uart_init(UART_1,115200,UART1_TX_P02_2,UART1_RX_P02_3);       // 初始化串口0 波特率115200 发送引脚使用P14_0 接收引脚使用P14_1
+//    uart_init(UART_0,115200,UART0_TX_P14_0,UART0_RX_P14_1);       // 初始化串口0 波特率115200 发送引脚使用P14_0 接收引脚使用P14_1
+    uart_init(UART_2,115200,UART2_TX_P33_9,UART2_RX_P33_8);       // 初始化串口0 波特率115200 发送引脚使用P14_0 接收引脚使用P14_1
     oled_init();  //oled初始化
     led_init();
     voltage_acquisition_Init();
     simiic_init();
 //    BMX055_init();
-
+    seekfree_wireless_init();
     Inductive_Acquisition_init();
     motor_init();   //驱动pwm通道初始化
     encoder_init();//编码器初始化
@@ -66,7 +67,10 @@ int core0_main(void)
     while (TRUE)
     {
         //seekfree_sendimg_03x(UART_0,mt9v03x_image[0],MT9V03X_W,MT9V03X_H);
+       // seekfree_sendimg_03x(UART_2,mt9v03x_image[0],MT9V03X_W,MT9V03X_H);
+
         //DebugUI();
+        ANO_DT_Send_Senser((int16)(bench_v), (int16)(encValue_1),0,0,0,0,0,0,0,0);
         OLED_UI();
 
 //        oled_show_voltage();

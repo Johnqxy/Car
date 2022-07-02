@@ -46,6 +46,7 @@ void OLED_UI(void) {
         oled_int16(50, 5, stop_sign);
         oled_p6x8str(0, 6, "mode");
         oled_int16(50, 6, car_mode);
+
     }
     if (kflag == 2) {
         oled_p6x8str(0, 0, "part num");
@@ -56,21 +57,41 @@ void OLED_UI(void) {
         oled_int16(80, 2, part_type[1]);
         oled_p6x8str(0, 3, "part type2");
         oled_int16(80, 3, part_type[2]);
-        oled_p6x8str(0, 4, "img_mode");
-        oled_int16(80, 4, img_mode);
-        oled_p6x8str(0, 5, "img_type");
-        oled_int16(80, 5, image_para.imgtype);
+//        oled_p6x8str(0, 4, "img_mode");
+//        oled_int16(80, 4, img_mode);
+        oled_p6x8str(0, 4, "l80");
+        oled_int16(80,4,leftline[80]);
+        oled_p6x8str(0, 5, "l1");
+        oled_int16(80, 5, l1);
+        oled_p6x8str(0, 6, "l2");
+        oled_int16(80, 6, l2);
+        oled_p6x8str(0, 7, "l3");
+        oled_int16(80, 7, l3);
+
+//        oled_p6x8str(0, 5, "img_type");
+//        oled_int16(80, 5, image_para.imgtype);
+//        oled_p6x8str(0, 4, "leftline");
+//        oled_int16(80, 4, leftline[65]);
+//        oled_p6x8str(0, 5, "lstd");
+//        oled_int16(80, 5, ls_std[65]);
+//        oled_p6x8str(0, 6, "rightline");
+//        oled_int16(80, 6, rightline[65]);
+//        oled_p6x8str(0, 7, "lstd");
+//        oled_int16(80, 7, rs_std[65]);
 //        oled_p6x8str(0, 6, "yaw rate");
 //        oled_int16(80, 6, yaw_rate);
 //        oled_p6x8str(0, 6, "yaw");
 //        oled_int16(80, 6, yaw);
-        oled_p6x8str(0, 6, "degree");
-        oled_int16(80, 6, degree);
-        oled_p6x8str(0, 7, "bench");
-        oled_int16(80, 7, bench_v);
-
-
-
+//        oled_p6x8str(0, 6, "degree");
+//        oled_int16(80, 6, degree);
+//        oled_p6x8str(0, 7, "bench");
+//        oled_int16(80, 7, bench_v);
+//        oled_p6x8str(0, 6, "p");
+//        oled_int16(50, 6    , p);
+//        oled_p6x8str(0, 7, "sl_cnt");
+//        oled_int16(80, 7, starting_line_cnt);
+//        oled_p6x8str(0, 6, "yaw rate");
+//        oled_int16(80, 6, yaw_rate);
 //        oled_p6x8str(0,6,"curv");
 //        oled_printf_float(80, 6, cur_circle(0),1,3);
 //        oled_p6x8str(0,7,"enter");

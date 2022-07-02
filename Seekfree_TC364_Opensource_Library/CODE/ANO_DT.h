@@ -21,6 +21,8 @@
 
 #include "headfile.h"//各个模块的头文件
 
+void ANO_DT_Send_Status(float angle_rol, float angle_pit, float angle_yaw, int32 alt, uint8 fly_model, uint8 armed);
+void ANO_DT_Send_Senser(int16 a_x,int16 a_y,int16 a_z,int16 g_x,int16 g_y,int16 g_z,int16 m_x,int16 m_y,int16 m_z,int32 bar);
 
 void ANO_DT_Send_Data(uint8 *dataToSend , uint16 length);
 

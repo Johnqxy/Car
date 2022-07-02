@@ -51,12 +51,14 @@ IFX_INTERRUPT(cc60_pit_ch1_isr, 0, CCU6_0_CH1_ISR_PRIORITY)
 //    static uint8 changing_light = 0;
 	//if (car_mode == 1) {
 		Inductive_Acquisition();
-		        if (average_inductance>=2800)   stop_sign = 1;
+//		        if (average_inductance>=2800)   stop_sign = 1;
 	//}
 	if (stop_sign == 0) {
 		error_roll = PID_Loc_Roll(error_x, yaw_rate);
 		MotorAPID(bench_v);
-		//    MotorBPID(30);
+//		    MotorAPID(bench_v);
+//		    motor_direction_left(duty1);
+
 		duty_left = duty1 - error_roll;
 		duty_right = duty1 + error_roll;
 		motor_direction_left(duty_left);
@@ -64,12 +66,12 @@ IFX_INTERRUPT(cc60_pit_ch1_isr, 0, CCU6_0_CH1_ISR_PRIORITY)
 
 	}
 	else {
-//        MotorAPID(0);
-//        MotorBPID(0);
-//        motor_direction_left(duty1);
-//        motor_direction_right(duty2);
-        motor_direction_left(0);
-        motor_direction_right(0);
+        MotorAPID(0);
+        MotorBPID(0);
+        motor_direction_left(duty1);
+        motor_direction_right(duty2);
+        //motor_direction_left(0);
+        //motor_direction_right(0);
 	}
 }
 
@@ -210,6 +212,7 @@ IFX_INTERRUPT(uart2_tx_isr, 0, UART2_TX_INT_PRIO)
 {
 	enableInterrupts();//¿ªÆôÖÐ¶ÏÇ¶Ì×
 	IfxAsclin_Asc_isrTransmit(&uart2_handle);
+
 }
 IFX_INTERRUPT(uart2_rx_isr, 0, UART2_RX_INT_PRIO)
 {

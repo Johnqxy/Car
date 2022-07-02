@@ -1,6 +1,17 @@
+
 #include "Camera.h"//黑色为0白色为1
 #include "headfile.h"
 
+float k1 = 0;
+uint8 l3 = 0;
+uint8 l1 = 0;
+uint8 l2 = 0;
+uint8 start_flag = 0;
+uint8 finish_flag = 0;
+uint8 p = 0;
+uint8 flag_starting_line_last = 0;
+uint8 flag_starting_line = 0;
+uint8 starting_line_cnt = 0;
 uint8 break_hangshu;
 uint8 centerline[120];
 uint8 leftline[120];
@@ -16,10 +27,10 @@ uint8 img_mode = 0;
 uint8 start = 1;
 uint8 cirsud_i;                     //环岛入环时的特殊点i坐标，特殊点为环岛外边界与直道边界的交点（此交点有两个，此处指入环时的点）
 float error = 0;                    //位置环偏移量
-uint8 break_flag = 0;
+
 uint8 FOK_OUT_FLAG_1 = 0;
 uint8 FOK_OUT_FLAG_2 = 0;
-uint8 FOK_S3_FLAG = 0;
+
 uint8 flag = 0;
 int max = 93;
 int min = 93;
@@ -32,7 +43,7 @@ uint8 upside = 0;                   //三岔S3阶段的判别点
 int a = 0;
 uint8 S3S4_flag = 0;                //环岛S3到S4阶段的标志位，当值为1时说明从S3跳到S4的那一帧
 int degree = 0;
-
+uint8 FOK_S3_FLAG = 0;
 int yaw_last = 0;
 uint8 CURSE_OFFSET_1 = 5;           //弯道的固定偏差，用于在弯道时调整车模位置
 uint8 UPSIDE_M = 39;                //主机的upside阈值，当upside大于其时，三岔从S2阶段进入S3
@@ -40,11 +51,10 @@ uint8 UPSIDE_S = 41;                //从机的upside阈值
 uint8 last;
 float offset = 0;
 image_parameter image_para;
-uint8 ls_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 37, 38, 39, 39, 40, 40, 40, 41, 42, 43, 44, 46, 46, 46, 47, 47,
-                  48,
-                  49, 49, 50, 50, 51, 52, 52, 53, 53, 54, 54, 55, 55, 55, 56, 57, 57, 58, 58, 59, 59, 60, 61, 61, 61,
-                  62, 63, 63, 63, 64, 64, 66, 66, 66, 67, 67, 68, 68, 69, 69, 70, 70, 71, 71, 71, 72, 73, 74, 74, 74,
-                  74, 74, 75, 77, 77, 77, 78, 78, 78, 79, 79, 80};
+uint8 ls_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 79, 79, 78, 78, 78, 77, 77, 77, 75, 74, 74, 74, 74, 74, 73, 72,
+                  71, 71, 71, 70, 70, 69, 69, 68, 68, 67, 67, 66, 66, 66, 64, 64, 63, 63, 63, 62, 61, 61, 61, 60, 59,
+                  59, 58, 58, 57, 57, 56, 55, 55, 55, 54, 54, 53, 53, 52, 52, 51, 50, 50, 49, 49, 48, 47, 47, 46, 46,
+                  46, 44, 43, 42, 41, 40, 40, 40, 39, 39, 38, 37, 37};
 uint8 rs_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 108, 109, 109, 110, 110, 110, 111, 112, 112, 113, 114, 114, 115, 115,
                   115, 115, 116, 117, 117, 117, 118, 118, 120, 120, 121, 121, 122, 122, 123, 123, 123, 124, 125, 125,
                   125, 126, 126, 127, 127, 127, 128, 128, 129, 130, 130, 131, 131, 131, 132, 133, 133, 134, 134, 135,
@@ -66,7 +76,7 @@ void Basic_line_scan(void) {
         part_num = 0;
         break_hangshu = 0;
     }
-
+    check_starting_line();
     for (j = MT9V03X_H - 1; j > 10; j--) {
         for (i = (uint8) old; i >= 0 && i < MT9V03X_W - 1; i++) {
             road_width[j]++;
@@ -102,14 +112,14 @@ void Basic_line_scan(void) {
         if (image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5 ||
             image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S6 ||
             image_para.imgtype == RCIR_W_S7 || image_para.imgtype == LCIR_W_S4 ||
-            image_para.imgtype == LCIR_W_S5) {
+            image_para.imgtype == LCIR_W_S5 || (image_para.imgtype == GARAGE_R && j < 60)) {
             old = leftline[j] + 10;
 
         }
         if (image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
             image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S6 ||
             image_para.imgtype == LCIR_W_S7 || image_para.imgtype == RCIR_W_S4 ||
-            image_para.imgtype == RCIR_W_S5) {
+            image_para.imgtype == RCIR_W_S5 || (image_para.imgtype == GARAGE_L && j < 60)) {
             old = rightline[j] - 10;
         }
         if (img_mode == 3) {
@@ -132,8 +142,33 @@ void Basic_line_scan(void) {
         }
     }
     old = centerline[MT9V03X_H - 1];
-    Pixle_ADD_My_Midline();
-    Pixle_ADD_My_hengxian(10);
+//    if (start_flag == 0) {
+//        start=0;
+////        for (uint8 i = 110; i > 20; i--) {
+////            if (centerline[i-2]-centerline[i]>10||centerline[i-2]-centerline[i]<-10) {
+////                l1 = i;
+////                l2 = rightline[i + 5];
+////                break;
+////            }
+////        }
+////        for (uint8 i = l1; i > 20; i--) {
+////            if (image_cache[i][l2] == 255 && image_cache[i - 1][l2] == 0 & image_cache[i - 2][l2] == 0) {
+////                l3 = i;
+////                break;
+////            }
+////        }
+////        k1 = (float)(l2 - leftline[i + 5]) / (float)(l1 - l3);
+////        for (uint8 l = l1+5; l > l3; l--) {
+////            leftline[l] = leftline[l + 1] + k1-0.5;
+////            centerline[l] = (uint8)((rightline[l] + leftline[l]) / 2);
+////        }
+//        bench_v=30;
+//        for (uint8 k = 80; k >10 ; --k) {
+//            leftline[k]=ls_std[k];
+//            centerline[k]=(uint8)((leftline[k]+rightline[k])/2);
+//        }
+//    }
+
 
 }//初次扫线完毕，将old重新赋值
 
@@ -374,6 +409,7 @@ float cur_circle(uint8 m) {
         return cur / num;
 }
 
+
 void image_distinguish(void) {
     image_type img_type = none;         //默认种类为none
 
@@ -564,13 +600,13 @@ void image_distinguish(void) {
         } else if (image_para.imgtype == RCIR_W_S2_5 && part_num >= 2 && part_type[0] == 0 &&
                    part_type[1] == 8) {
             img_type = RCIR_W_S3;
-        } else if (image_para.imgtype == LCIR_W_S3 && ((part_type[1] == 7 && part_index[0] >= 60) ||
+        } else if (image_para.imgtype == LCIR_W_S3 && ((part_type[1] == 7 && part_index[0] >= 50) ||
                                                        part_type[0] == 7))   //当三阶段特殊点很低时，说明车身即将进入环内，设置为环内S4阶段
         {
             img_type = LCIR_W_S4;
             S3S4_flag = 1;          //说明是进入S4阶段的第一帧，需要进行特殊处理
         } else if (image_para.imgtype == RCIR_W_S3 &&
-                   ((part_type[1] == 8 && part_index[0] >= 45) || part_type[0] == 8)) {
+                   ((part_type[1] == 8 && part_index[0] >= 50) || part_type[0] == 8)) {
             img_type = RCIR_W_S4;
             S3S4_flag = 1;
         } else if (image_para.imgtype == LCIR_W_S4 && part_num == 2 &&
@@ -584,15 +620,16 @@ void image_distinguish(void) {
                    degree > 10000) {
             img_type = LCIR_W_S5;
         } else if (image_para.imgtype == RCIR_W_S4 && part_num == 2 &&
-                   (part_type[1] == 3 || part_type[1] == 5)) {
+                   (part_type[1] == 3 || part_type[1] == 5 || part_type[1] == 2) && degree < -10000) {
             img_type = RCIR_W_S5;
         } else if (image_para.imgtype == RCIR_W_S4 && part_num >= 3 &&
-                   (part_type[1] == 3 || part_type[1] == 5 || part_type[2] == 3 || part_type[2] == 5)) {
+                   (part_type[1] == 3 || part_type[1] == 5 || part_type[1] == 2 || part_type[2] == 3 ||
+                    part_type[2] == 5 || part_type[2] == 2) && degree < -10000) {
             img_type = RCIR_W_S5;
-        } else if (image_para.imgtype == LCIR_W_S5 && degree > 14000)        //当转过几乎一周的角度时，认为以及出环，设置此时为S6阶段
+        } else if (image_para.imgtype == LCIR_W_S5 && degree > 15000)        //当转过几乎一周的角度时，认为以及出环，设置此时为S6阶段
         {
             img_type = LCIR_W_S6;
-        } else if (image_para.imgtype == RCIR_W_S5) {
+        } else if (image_para.imgtype == RCIR_W_S5 && degree < -15000) {
             img_type = RCIR_W_S6;
         } else if (image_para.imgtype == LCIR_W_S6 && part_num >= 2 &&
                    (part_type[0] == 1 || part_type[0] == 5) &&
@@ -608,7 +645,7 @@ void image_distinguish(void) {
         {
             img_type = STR_W;
             img_mode = 0;
-        } else if (image_para.imgtype == RCIR_W_S7 && part_type[0] == 0) {
+        } else if (image_para.imgtype == RCIR_W_S7 && (part_type[0] == 0 || part_type[0] == 1)) {
             img_type = STR_W;
             img_mode = 0;
         }
@@ -683,7 +720,26 @@ void image_distinguish(void) {
         }
 
     }
+    if (starting_line_cnt >= 3 && finish_flag == 0) {
+        if (image_cache[64][0] == 0 && image_cache[64][2] == 0 && image_cache[64][4] == 0 && image_cache[64][6] == 0 &&
+            image_cache[64][8] == 0 && image_cache[64][10] == 0) {
+            img_type = GARAGE_R;
+            img_mode = 0;
+        } else if (image_para.imgtype == GARAGE_R) {
+            img_type = GARAGE_R;
+        } else {
+            img_type = GARAGE_L;
+            img_mode = 0;
+        }
+    }
+    if (image_para.imgtype == GARAGE_R && degree < -3000) {
+        img_type = FINISH;
+        finish_flag = 1;
 
+    }
+    if (finish_flag == 1) {
+        img_type = FINISH;
+    }
     image_para.imgtype = img_type;
 }
 
@@ -693,8 +749,6 @@ float offset_process(void) {
 
     offset = 0;
     float weight = 0;
-    int16 gain_up;
-    float x, y;
 
     int16 offset_si;        //计算偏差值的起始行i值
     int16 offset_ei;        //计算偏差值的终止行i值，注意i从大到小为从下到上
@@ -705,28 +759,29 @@ float offset_process(void) {
     if (image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
         image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
         image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
-        image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 ||
-        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6||break_hangshu > 35) {
+        image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S4 ||
+        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6 || break_hangshu > 35) {
         offset_si = 75;
-        offset_ei = 45;
+        offset_ei = 55;
 //    } else if (break_hangshu > 35) {
 //        offset_ei = break_hangshu;
 //        offset_si = break_hangshu + 15;
-    } else if (image_para.imgtype == LCIR_W_S3) {
+    } else if (image_para.imgtype == LCIR_W_S3 || image_para.imgtype == RCIR_W_S3) {
         offset_si = 70;
         offset_ei = 50;
     } else {
-        offset_si = 50;
+        offset_si = 55;
         offset_ei = 35;
     }
     if (image_para.imgtype == LCIR_W_S1 || image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
-        image_para.imgtype == LCIR_W_S3||image_para.imgtype == LCIR_W_S4||image_para.imgtype == LCIR_W_S5) {
+        image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
+        image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5 ||
+        image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 || image_para.imgtype == RCIR_W_S5) {
         bench_v = 55;
     } else {
         bench_v = 70;
     }
-    Pixle_ADD_My_hengxian(offset_si);
-    Pixle_ADD_My_hengxian(offset_ei);
+
     //处于坡道时行数取低，防止因为远处的图像而在坡顶掉落
 //    if(flag_ramp > 20)
 //    {
@@ -844,20 +899,15 @@ float offset_process(void) {
             offset += (float) (leftline[i] - ls_std[i] - 15);
             weight += 1;
         }
-    } else if (image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5) {
+    } else if (image_para.imgtype == RCIR_W_S2) {
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            if (rightline[i] - rightline[i + 1] > 0 && part_type[0] == 0 &&
-                rightline[i] - rightline[i + 1] < SSUD_TH) {
-                offset += (float) (rightline[i] - rs_std[i]);
-                weight += 1;
-            } else {
-                offset += (float) (leftline[i] - ls_std[i] - CURSE_OFFSET_1);
-                weight += 1;
-            }
+            offset += (float) (leftline[i] - ls_std[i] + 10);
+            weight += 1;
         }
+
     } else if (image_para.imgtype == RCIR_W_S2_5) {
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            offset += (float) (leftline[i] - ls_std[i] - CURSE_OFFSET_1);
+            offset += (float) (rightline[i] - rs_std[i] + 15);
             weight += 1;
         }
     } else if (image_para.imgtype == LCIR_W_S3) {
@@ -875,24 +925,11 @@ float offset_process(void) {
         if (part_type[1] == 8)
             cirsud_i = part_index[0] - 1;
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            if (i > cirsud_i) {
-                if (code_mode == 1) {
 
-                    if (rightline[i] - rs_std[i] > 0) {
-                        offset += (float) (rightline[i] - rs_std[i]);
-                        weight += 1;
-                    }
-                } else if (code_mode == 2) {
-                    offset += 20;
-                    weight += 1;
-                }
-            } else {
 
-                if (leftline[i] - ls_std[i] > 0) {
-                    offset += (float) (leftline[i] - ls_std[i]);
-                    weight += 1;
-                }
-            }
+            offset += (float) (rightline[i] - rs_std[i] + 10);
+            weight += 1;
+
         }
     } else if (image_para.imgtype == LCIR_W_S4) {
         if (S3S4_flag == 1)  //当第一次进入S4阶段时，该帧图像的各行类型判断采用了环岛S3阶段的判断方法，因此需要特殊处理
@@ -1024,12 +1061,48 @@ float offset_process(void) {
         weight = 1;
     }
     offset = offset / weight;
+    if (flag_starting_line == 1 && (image_para.imgtype != GARAGE_L || image_para.imgtype != GARAGE_R)) {
+        if (offset > 5) offset = 5;
+        if (offset < -5)offset = -5;
+    }
+    if (image_para.imgtype == GARAGE_R) {
+        bench_v = 30;
+        float k = 0;
+        for (uint8 k = 30; k < 80; ++k) {
+            if (rightline[k + 2] - rightline[k] > 10) {
+                p = k;
+                break;
+            }
+        }
+        k = (rightline[p] - leftline[119]) / (119 - p);
+        for (int l = 119; l > p + 1; --l) {
+            leftline[l - 1] = (int) (leftline[l] + k);
+            centerline[l - 1] = (int) (rightline[l - 1] + leftline[l - 1]) / 2;
+        }
+        for (int i = p; i < p + 10; ++i) {
+            offset += (float) (centerline[i] - MT9V03X_W / 2);
+            weight += 1;
+        }
+    }
 
+    if (image_para.imgtype == GARAGE_L) {
+        offset = -50;
+        bench_v = 1;
+    }
+    if (image_para.imgtype == FINISH) {
+        offset = 0;
+        bench_v = 0;
+        start = 0;
+    }
     //坡道处理
 //    if(flag_ramp > 20 && offset > 10)
 //        offset = 10;
 //    else if(flag_ramp > 20 && offset < -10)
 //        offset = -10;
+
+    Pixle_ADD_My_Midline();
+    Pixle_ADD_My_hengxian(10);
+    //Pixle_ADD_My_Leftline();
     error = -offset;
     return offset;
 }
@@ -1039,15 +1112,65 @@ void calc_angle() {
         image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
         image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
         image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 ||
-        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6) {
+        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6 || image_para.imgtype == GARAGE_R ||
+        image_para.imgtype == GARAGE_L) {
         degree += yaw_rate;
     } else {
         degree = 0;
     }
 }
 
+void check_starting_line() {
+
+    uint8 times = 0;
+    uint8 start_point = 85;
+    uint8 end_point = 75;
+
+    for (uint8 y = start_point; y >= end_point; y--) {
+
+        uint8 black_blocks = 0;
+        uint8 cursor = 0;    //指向栈顶的游标
+        //int sum_liezuobiao = 0;
+        for (uint8 x = 0; x <= 120; x++) {
+            if (image_cache[y][x] == 0) {
+                if (cursor >= 20) {
+
+
+                } else {
+                    cursor++;;
+                }
+            } else {
+                if (cursor >= 2 && cursor <= 7) {
+                    black_blocks++;
+
+                    cursor = 0;
+                } else {
+                    cursor = 0;
+
+                }
+            }
+        }
+
+        if (black_blocks >= 5 && black_blocks <= 11) {
+            times++;
+
+        }
+    }
+    if (times >= 4) {
+        flag_starting_line = 1;
+    } else {
+        flag_starting_line = 0;
+    }
+    if (flag_starting_line == 1 && flag_starting_line_last == 0) {
+        starting_line_cnt++;
+    }
+    flag_starting_line_last = flag_starting_line;
+}
+
 void Img_type_test() {
+
     Boundary_part();
+
     image_distinguish();
     offset_process();
     calc_angle();

@@ -184,7 +184,15 @@ void Pixle_ADD_My_Midline() {
         image_cache[i][centerline[i] - 1] = 0;
     }
 }
+void Pixle_ADD_My_Leftline() {
 
+    uint8 i = 0;
+    for (i = 0; i < MT9V03X_H; i++) {
+        image_cache[i][leftline[i]] = 0;
+        image_cache[i][leftline[i] + 1] = 0;
+        image_cache[i][leftline[i] - 1] = 0;
+    }
+}
 void Pixle_ADD_My_hengxian(int m) {
 
     uint8 i = 0;

@@ -27,8 +27,8 @@ sint16 encValue_2;
 
 sint16 Average_encValue;
 
-sint16 duty1;
-sint16 duty2;
+sint16 duty1=0;
+sint16 duty2=0;
 //sint16 duty3;
 //sint16 duty4;
 
@@ -133,18 +133,20 @@ void MotorAPID (int speedA)  //10
 
 
     errorA = speedA - Average_encValue;
+    //errorA = speedA - encValue_1;
     doubleerrorA = errorA - lasterrorA;
 
-    incA = (sint16)((4.25 * doubleerrorA + 2 * errorA + myCar.SpeedDA * (errorA - 2 * lasterrorA + doublelasterrorA))); //10*100
+    incA = (sint16)((122.5 * doubleerrorA + 2 * errorA + myCar.SpeedDA * (errorA - 2 * lasterrorA + doublelasterrorA))); //10*100
 
 //    uint32 temp=voltageA*100;
     duty1 = incA + duty1;//*temp/100);//*voltageA);//*2400/voltage); //1000
-    if(duty1 > 6000)
-        duty1 = 6000;
-    else if(duty1 < -6000)
-        duty1 = -6000;
+    if(duty1 > 10000)
+        duty1 = 10000;
+    else if(duty1 < -10000)
+        duty1 = -10000;
     doublelasterrorA = lasterrorA;
     lasterrorA = errorA;
+//    static sint16 incA = 0 ;
 
 }
 
@@ -158,10 +160,10 @@ void MotorBPID (sint16 speedB)
     static sint16 lasterrorB = 0,doublelasterrorB = 0;
     sint16 errorB = 0,doubleerrorB = 0;
 
-    errorB = speedB - encValue_2;
+    errorB = speedB - Average_encValue;
     doubleerrorB = errorB - lasterrorB;
 
-    incB = (sint16)(4.25 * doubleerrorB + 2.0 * errorB + myCar.SpeedDB * (errorB - 2 * lasterrorB + doublelasterrorB));
+    incB = (sint16)(4.25 * doubleerrorB + 2 * errorB + myCar.SpeedDB * (errorB - 2 * lasterrorB + doublelasterrorB));
     duty2 = incB + duty2;
     if(duty2 > 4000)
         duty2 = 4000;

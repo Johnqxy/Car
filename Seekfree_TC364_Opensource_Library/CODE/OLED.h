@@ -18,6 +18,7 @@ void Get_01_Value(unsigned char mode);
 void GetThreshold(void);
 void Pixle_ADD_My_Midline();
 void Pixle_ADD_My_hengxian(int m);
+void Pixle_ADD_My_Leftline();
 extern struct Threshold_Information myThreshold;
 
 struct Threshold_Information

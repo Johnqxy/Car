@@ -39,6 +39,11 @@ typedef enum {
     RCIR_W_S5,              //环岛阶段5 21
     RCIR_W_S6,              //环岛阶段6 22
     RCIR_W_S7,              //环岛阶段7 23
+
+    //入库
+    GARAGE_L,          //24
+    GARAGE_R,              //25
+    FINISH,//26
 } image_type;
 
 //从图像中提取出的信息结构体
@@ -67,14 +72,22 @@ extern uint8 road_type[120];
 extern uint8 enter_flag;
 extern uint8 img_mode;
 extern uint8 num;
-extern float cur;
+extern float cur,k1;
 extern image_parameter image_para;
-extern float error,offset;
+extern float error, offset;
 extern uint8 break_hangshu;
 extern uint8 FOK_OUT_FLAG_1;
-extern uint8 FOK_OUT_FLAG_2 ;
+extern uint8 FOK_OUT_FLAG_2;
 extern uint8 flag;
 extern int degree;
+extern uint8 flag_starting_line;
+extern uint8 starting_line_cnt;
+extern uint8 flag_starting_line_last;
+extern uint8 p;
+extern int bench_v;
+extern uint8 ls_std[];
+extern uint8 rs_std[];
+extern uint8 l1,l2,l3;
 ///////////////全局函数/////////////////
 
 extern void img_extract(void);
@@ -95,6 +108,7 @@ void image_distinguish(void);
 
 void Img_type_test(void);
 
+void check_starting_line();
 /*******************/
 
 #endif

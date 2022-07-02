@@ -14,7 +14,7 @@
 //// 轮子pwm 最大变化占空比 可自行修改
 //#define MOTOR_PWM_CHANGE_MAX  3000
 
-extern int bench_v;
+
 extern int duty_left;
 extern int duty_right;
 

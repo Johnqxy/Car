@@ -98,3 +98,92 @@ void ANO_DT_send_int16(int data1, int data2, int data3, int data4)
 	ANO_DT_Send_Data(data_to_send, _cnt);
 
 }
+
+void ANO_DT_Send_Status(float angle_rol, float angle_pit, float angle_yaw, int32 alt, uint8 fly_model, uint8 armed)
+{
+    uint8 _cnt=0;
+    uint16 _temp;
+    uint32 _temp2 = alt;
+
+    data_to_send[_cnt++]=0xAA;
+    data_to_send[_cnt++]=0xAA;
+    data_to_send[_cnt++]=0x01;
+    data_to_send[_cnt++]=0;
+
+    _temp = (int)(angle_rol*100);
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = (int)(angle_pit*100);
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = (int)(angle_yaw*100);
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+
+    data_to_send[_cnt++]=BYTE3(_temp2);
+    data_to_send[_cnt++]=BYTE2(_temp2);
+    data_to_send[_cnt++]=BYTE1(_temp2);
+    data_to_send[_cnt++]=BYTE0(_temp2);
+
+    data_to_send[_cnt++] = fly_model;
+
+    data_to_send[_cnt++] = armed;
+
+    data_to_send[3] = _cnt-4;
+
+    uint8 sum = 0;
+    for(uint8 i=0;i<_cnt;i++)
+        sum += data_to_send[i];
+    data_to_send[_cnt++]=sum;
+
+    ANO_DT_Send_Data(data_to_send, _cnt);
+}
+void ANO_DT_Send_Senser(int16 a_x,int16 a_y,int16 a_z,int16 g_x,int16 g_y,int16 g_z,int16 m_x,int16 m_y,int16 m_z,int32 bar)
+{
+    uint8 _cnt=0;
+    uint16 _temp;
+
+    data_to_send[_cnt++]=0xAA;
+    data_to_send[_cnt++]=0xAA;
+    data_to_send[_cnt++]=0x02;
+    data_to_send[_cnt++]=0;
+
+    _temp = a_x;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = a_y;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = a_z;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+
+    _temp = g_x;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = g_y;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = g_z;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+
+    _temp = m_x;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = m_y;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+    _temp = m_z;
+    data_to_send[_cnt++]=BYTE1(_temp);
+    data_to_send[_cnt++]=BYTE0(_temp);
+
+    data_to_send[3] = _cnt-4;
+
+    uint8 sum = 0;
+    for(uint8 i=0;i<_cnt;i++)
+        sum += data_to_send[i];
+    data_to_send[_cnt++] = sum;
+
+    ANO_DT_Send_Data(data_to_send, _cnt);
+}

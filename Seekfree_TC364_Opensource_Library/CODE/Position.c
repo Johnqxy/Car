@@ -39,8 +39,8 @@ sint16 PID_Loc(sint16 SetValue, sint16 ActualValue)//   40 30
     static sint16 Ek1 = 0 ;
     Ek = SetValue - ActualValue;   //92-(100)=-8
     LocSum +=  Ek;   //                      //¿€º∆ŒÛ≤Ó
-        Kp_position = 4.8;
-        Kd_position = 0.5;
+        Kp_position = 11.625;
+        Kd_position = 8;
     PIDLoc =  Kp_position *  Ek +  Kd_position * ( Ek1 -  Ek);
     Ek1 =  Ek;
     return PIDLoc;
