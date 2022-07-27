@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxFce_Crc.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Fce/Crc/IfxFce_Crc.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Fce/Crc/IfxFce_Crc.c :
 IfxFce_Crc.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Fce/Crc/IfxFce_Crc.h

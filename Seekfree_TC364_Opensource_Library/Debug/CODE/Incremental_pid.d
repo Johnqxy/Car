@@ -2,18 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Incremental_pid.o :	../CODE/Incremental_pid.c
 ../CODE/Incremental_pid.c :
 Incremental_pid.o :	../Libraries/seekfree_libraries/headfile.h
@@ -428,15 +416,7 @@ Incremental_pid.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Incremental_pid.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Incremental_pid.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Incremental_pid.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Incremental_pid.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Incremental_pid.o :	../CODE/led.h
-../CODE/led.h :
-Incremental_pid.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Incremental_pid.o :	../CODE/button.h
 ../CODE/button.h :

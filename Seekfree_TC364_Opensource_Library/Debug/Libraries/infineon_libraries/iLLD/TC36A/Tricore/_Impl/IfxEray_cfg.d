@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxEray_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxEray_cfg.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxEray_cfg.c :
 IfxEray_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxEray_cfg.h

@@ -2,14 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Cpu0_Main.o :	../USER/Cpu0_Main.c
 ../USER/Cpu0_Main.c :
 Cpu0_Main.o :	../USER/Cpu0_Main.h
@@ -442,15 +434,7 @@ Cpu0_Main.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Cpu0_Main.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Cpu0_Main.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Cpu0_Main.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Cpu0_Main.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Cpu0_Main.o :	../CODE/led.h
-../CODE/led.h :
-Cpu0_Main.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Cpu0_Main.o :	../CODE/button.h
 ../CODE/button.h :

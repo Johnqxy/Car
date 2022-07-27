@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxScu_PinMap.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_PinMap/IfxScu_PinMap.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_PinMap/IfxScu_PinMap.c :
 IfxScu_PinMap.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_PinMap/IfxScu_PinMap.h

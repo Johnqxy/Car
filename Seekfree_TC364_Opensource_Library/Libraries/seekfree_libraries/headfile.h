@@ -81,9 +81,9 @@
 #include "Car_Information.h"
 #include "ANO_DT.h"
 #include "Voltage_Acquisition.h"
-#include "Inductive_Acquisition.h"
+///#include "Inductive_Acquisition.h"
 #include "Camera.h"
-#include "led.h"
+//#include "led.h"
 #include "button.h"
 #endif
 

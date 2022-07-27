@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxAsclin_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxAsclin_cfg.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxAsclin_cfg.c :
 IfxAsclin_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxAsclin_cfg.h

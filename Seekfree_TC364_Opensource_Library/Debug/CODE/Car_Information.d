@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Car_Information.o :	../CODE/Car_Information.c
 ../CODE/Car_Information.c :
 Car_Information.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Car_Information.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Car_Information.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Car_Information.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Car_Information.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Car_Information.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Car_Information.o :	../CODE/led.h
-../CODE/led.h :
-Car_Information.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Car_Information.o :	../CODE/button.h
 ../CODE/button.h :

@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxStdIf_Pos.o :	../Libraries/infineon_libraries/Service/CpuGeneric/StdIf/IfxStdIf_Pos.c
 ../Libraries/infineon_libraries/Service/CpuGeneric/StdIf/IfxStdIf_Pos.c :
 IfxStdIf_Pos.o :	../Libraries/infineon_libraries/Service/CpuGeneric/StdIf/IfxStdIf_Pos.h

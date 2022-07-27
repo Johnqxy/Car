@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 CompilerGnuc.o :	../Libraries/infineon_libraries/Infra/Platform/Tricore/Compilers/CompilerGnuc.c
 ../Libraries/infineon_libraries/Infra/Platform/Tricore/Compilers/CompilerGnuc.c :
 CompilerGnuc.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Cpu/Std/Ifx_Types.h

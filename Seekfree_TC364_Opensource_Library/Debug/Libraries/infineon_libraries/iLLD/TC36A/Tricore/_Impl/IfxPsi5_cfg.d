@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxPsi5_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxPsi5_cfg.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxPsi5_cfg.c :
 IfxPsi5_cfg.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/_Impl/IfxPsi5_cfg.h

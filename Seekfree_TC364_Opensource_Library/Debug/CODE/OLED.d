@@ -416,15 +416,7 @@ OLED.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 OLED.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-OLED.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-OLED.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 OLED.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-OLED.o :	../CODE/led.h
-../CODE/led.h :
-OLED.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 OLED.o :	../CODE/button.h
 ../CODE/button.h :

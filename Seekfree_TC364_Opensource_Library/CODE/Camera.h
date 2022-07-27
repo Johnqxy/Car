@@ -8,6 +8,7 @@
 
 
 typedef enum {
+
     none = 0,               //无类型0
 
     STR_W,                  //直道1
@@ -44,6 +45,8 @@ typedef enum {
     GARAGE_L,          //24
     GARAGE_R,              //25
     FINISH,//26
+    //出库
+    IN_GARAGE
 } image_type;
 
 //从图像中提取出的信息结构体
@@ -71,8 +74,6 @@ extern uint8 part_num;
 extern uint8 road_type[120];
 extern uint8 enter_flag;
 extern uint8 img_mode;
-extern uint8 num;
-extern float cur,k1;
 extern image_parameter image_para;
 extern float error, offset;
 extern uint8 break_hangshu;
@@ -87,7 +88,8 @@ extern uint8 p;
 extern int bench_v;
 extern uint8 ls_std[];
 extern uint8 rs_std[];
-extern uint8 l1,l2,l3;
+extern uint8 turn_flag;
+extern uint8 type5_flag,type6_flag;
 ///////////////全局函数/////////////////
 
 extern void img_extract(void);

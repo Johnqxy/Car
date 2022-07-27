@@ -35,7 +35,7 @@ IFX_INTERRUPT(cc60_pit_ch0_isr, 1, CCU6_0_CH0_ISR_PRIORITY)
 	Get_Car_Angle();
 	get_encoder();
 	voltage_acquisition();
-	light_up();
+//	light_up();
 }
 
 
@@ -50,7 +50,7 @@ IFX_INTERRUPT(cc60_pit_ch1_isr, 0, CCU6_0_CH1_ISR_PRIORITY)
 //    static uint8 g_u8GetBeacon_last = 0;
 //    static uint8 changing_light = 0;
 	//if (car_mode == 1) {
-		Inductive_Acquisition();
+		//Inductive_Acquisition();
 //		        if (average_inductance>=2800)   stop_sign = 1;
 	//}
 	if (stop_sign == 0) {

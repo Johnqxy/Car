@@ -2,18 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 isr.o :	../USER/isr.c
 ../USER/isr.c :
 isr.o :	../USER/isr_config.h
@@ -432,16 +420,8 @@ isr.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 isr.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-isr.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-isr.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 isr.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-isr.o :	../CODE/led.h
-../CODE/led.h :
-isr.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 isr.o :	../CODE/button.h
 ../CODE/button.h :
 isr.o :	../Libraries/seekfree_peripheral/SEEKFREE_7725_UART.h

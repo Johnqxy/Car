@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Cpu1_Main.o :	../USER/Cpu1_Main.c
 ../USER/Cpu1_Main.c :
 Cpu1_Main.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Cpu1_Main.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Cpu1_Main.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Cpu1_Main.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Cpu1_Main.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Cpu1_Main.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Cpu1_Main.o :	../CODE/led.h
-../CODE/led.h :
-Cpu1_Main.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Cpu1_Main.o :	../CODE/button.h
 ../CODE/button.h :

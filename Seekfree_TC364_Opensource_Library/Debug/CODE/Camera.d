@@ -418,15 +418,7 @@ Camera.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Camera.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Camera.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Camera.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Camera.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Camera.o :	../CODE/led.h
-../CODE/led.h :
-Camera.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Camera.o :	../CODE/button.h
 ../CODE/button.h :

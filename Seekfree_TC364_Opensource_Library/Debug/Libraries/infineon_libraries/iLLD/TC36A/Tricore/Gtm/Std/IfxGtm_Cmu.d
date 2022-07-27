@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxGtm_Cmu.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Std/IfxGtm_Cmu.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Std/IfxGtm_Cmu.c :
 IfxGtm_Cmu.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Std/IfxGtm_Cmu.h

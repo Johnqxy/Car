@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 BMX055.o :	../CODE/BMX055.c
 ../CODE/BMX055.c :
 BMX055.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,16 +416,8 @@ BMX055.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 BMX055.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-BMX055.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-BMX055.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 BMX055.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-BMX055.o :	../CODE/led.h
-../CODE/led.h :
-BMX055.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 BMX055.o :	../CODE/button.h
 ../CODE/button.h :
 BMX055.o :	../Libraries/seekfree_peripheral/SEEKFREE_IIC.h

@@ -2,11 +2,10 @@
 #include "Camera.h"//黑色为0白色为1
 #include "headfile.h"
 
-float k1 = 0;
-uint8 l3 = 0;
-uint8 l1 = 0;
-uint8 l2 = 0;
-uint8 start_flag = 0;
+uint8 enter_flag = 0;
+uint8 type5_flag = 0;
+uint8 type6_flag = 0;
+uint8 turn_flag = 0;
 uint8 finish_flag = 0;
 uint8 p = 0;
 uint8 flag_starting_line_last = 0;
@@ -27,42 +26,40 @@ uint8 img_mode = 0;
 uint8 start = 1;
 uint8 cirsud_i;                     //环岛入环时的特殊点i坐标，特殊点为环岛外边界与直道边界的交点（此交点有两个，此处指入环时的点）
 float error = 0;                    //位置环偏移量
-
 uint8 FOK_OUT_FLAG_1 = 0;
 uint8 FOK_OUT_FLAG_2 = 0;
-
 uint8 flag = 0;
 int max = 93;
 int min = 93;
 uint8 old = 93;
-uint8 i, j;
 float offset_S5 = 0;                //环岛S5阶段的开环偏差值
 float weight_S5 = 0;                //环岛S5阶段的开环偏差累加计数，offset_S5/weight_S5为真正的偏差值
 uint8 code_mode = 1;
 uint8 upside = 0;                   //三岔S3阶段的判别点
-int a = 0;
+int s3_cnt = 0;
 uint8 S3S4_flag = 0;                //环岛S3到S4阶段的标志位，当值为1时说明从S3跳到S4的那一帧
 int degree = 0;
-uint8 FOK_S3_FLAG = 0;
-int yaw_last = 0;
 uint8 CURSE_OFFSET_1 = 5;           //弯道的固定偏差，用于在弯道时调整车模位置
 uint8 UPSIDE_M = 39;                //主机的upside阈值，当upside大于其时，三岔从S2阶段进入S3
-uint8 UPSIDE_S = 41;                //从机的upside阈值
-uint8 last;
+uint8 UPPER_GARAGE = 0;
 float offset = 0;
 image_parameter image_para;
 uint8 ls_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 79, 79, 78, 78, 78, 77, 77, 77, 75, 74, 74, 74, 74, 74, 73, 72,
                   71, 71, 71, 70, 70, 69, 69, 68, 68, 67, 67, 66, 66, 66, 64, 64, 63, 63, 63, 62, 61, 61, 61, 60, 59,
                   59, 58, 58, 57, 57, 56, 55, 55, 55, 54, 54, 53, 53, 52, 52, 51, 50, 50, 49, 49, 48, 47, 47, 46, 46,
-                  46, 44, 43, 42, 41, 40, 40, 40, 39, 39, 38, 37, 37};
-uint8 rs_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 108, 109, 109, 110, 110, 110, 111, 112, 112, 113, 114, 114, 115, 115,
-                  115, 115, 116, 117, 117, 117, 118, 118, 120, 120, 121, 121, 122, 122, 123, 123, 123, 124, 125, 125,
-                  125, 126, 126, 127, 127, 127, 128, 128, 129, 130, 130, 131, 131, 131, 132, 133, 133, 134, 134, 135,
-                  135, 135, 135, 136, 137, 137, 138, 139, 139, 140, 141, 141, 141, 141, 142, 143, 143, 144, 145, 145,
-                  145, 146, 146, 147, 148, 148};
+                  46, 44, 43, 42, 41, 40, 40, 40, 39, 39, 38, 37, 37, 36, 36, 35, 34, 34, 33, 33, 32, 32, 31, 30, 30,
+                  29, 29, 28, 28, 27, 27, 26, 25, 25, 24, 24, 24, 23, 23, 22, 21, 21,
+};
+uint8 rs_std[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                  108, 109, 109, 110, 110, 110, 111, 112, 112, 113, 114, 114, 115, 115, 115, 115, 116, 117, 117, 117,
+                  118, 118, 120, 120, 121, 121, 122, 122, 123, 123, 123, 124, 125, 125, 125, 126, 126, 127, 127, 127,
+                  128, 128, 129, 130, 130, 131, 131, 131, 132, 133, 133, 134, 134, 135, 135, 135, 135, 136, 137, 137,
+                  138, 139, 139, 140, 141, 141, 141, 141, 142, 143, 143, 144, 145, 145, 145, 146, 146, 147, 148, 148,
+                  149, 149, 150, 151, 151, 151, 151, 152, 153, 153, 154, 154, 155, 155, 156, 156, 156, 157, 157, 158,
+                  158, 158, 158, 159, 159, 160, 161, 161, 161,};
 
 void Basic_line_scan(void) {
-
+    uint8 i, j;
     for (j = MT9V03X_H - 1; j > 10; j--) {
         leftfindflag[j] = 0;  //用来标记左黑线是否找到
         rightfindflag[j] = 0;
@@ -71,8 +68,8 @@ void Basic_line_scan(void) {
         rightline[j] = 187;
         road_width[j] = 0;
         road_type[j] = 0;
-        part_type[MT9V03X_H] = 0;         //分段类型
-        part_index[MT9V03X_H] = 0;        //分段终点下标
+        part_type[j] = 0;         //分段类型
+        part_index[j] = 0;        //分段终点下标
         part_num = 0;
         break_hangshu = 0;
     }
@@ -112,14 +109,14 @@ void Basic_line_scan(void) {
         if (image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5 ||
             image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S6 ||
             image_para.imgtype == RCIR_W_S7 || image_para.imgtype == LCIR_W_S4 ||
-            image_para.imgtype == LCIR_W_S5 || (image_para.imgtype == GARAGE_R && j < 60)) {
+            image_para.imgtype == LCIR_W_S5 || (image_para.imgtype == GARAGE_R && j < 60) || type6_flag == 1) {
             old = leftline[j] + 10;
 
         }
         if (image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
             image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S6 ||
             image_para.imgtype == LCIR_W_S7 || image_para.imgtype == RCIR_W_S4 ||
-            image_para.imgtype == RCIR_W_S5 || (image_para.imgtype == GARAGE_L && j < 60)) {
+            image_para.imgtype == RCIR_W_S5 || (image_para.imgtype == GARAGE_L && j < 60) || type5_flag == 1) {
             old = rightline[j] - 10;
         }
         if (img_mode == 3) {
@@ -142,32 +139,6 @@ void Basic_line_scan(void) {
         }
     }
     old = centerline[MT9V03X_H - 1];
-//    if (start_flag == 0) {
-//        start=0;
-////        for (uint8 i = 110; i > 20; i--) {
-////            if (centerline[i-2]-centerline[i]>10||centerline[i-2]-centerline[i]<-10) {
-////                l1 = i;
-////                l2 = rightline[i + 5];
-////                break;
-////            }
-////        }
-////        for (uint8 i = l1; i > 20; i--) {
-////            if (image_cache[i][l2] == 255 && image_cache[i - 1][l2] == 0 & image_cache[i - 2][l2] == 0) {
-////                l3 = i;
-////                break;
-////            }
-////        }
-////        k1 = (float)(l2 - leftline[i + 5]) / (float)(l1 - l3);
-////        for (uint8 l = l1+5; l > l3; l--) {
-////            leftline[l] = leftline[l + 1] + k1-0.5;
-////            centerline[l] = (uint8)((rightline[l] + leftline[l]) / 2);
-////        }
-//        bench_v=30;
-//        for (uint8 k = 80; k >10 ; --k) {
-//            leftline[k]=ls_std[k];
-//            centerline[k]=(uint8)((leftline[k]+rightline[k])/2);
-//        }
-//    }
 
 
 }//初次扫线完毕，将old重新赋值
@@ -176,9 +147,9 @@ void Basic_line_scan(void) {
 void Advanced_line_scan(void) {
     Basic_line_scan();
     uint8 i;
-    float dl, dr;           //相对于上一行的左右边界变化，注意i值从大到小变化
+    int dl, dr;           //相对于上一行的左右边界变化，注意i值从大到小变化
     uint8 w_min;            //之前行的最小宽度
-    uint8 dw[MT9V03X_H];    //相对于上一行的行宽度变化
+    int dw[MT9V03X_H];    //相对于上一行的行宽度变化
     uint8 flag_sud = 0;     //突变的标志
 
     w_min = 130;
@@ -353,7 +324,22 @@ void Boundary_part(void) {
         }
     }
     part_num = part_mi;
+    for (uint8 k = 0; k < part_num; ++k) {
+        if (part_type[k] == 5) {
+            type5_flag = 1;
+            break;
+        } else if (part_type[k] == 6) {
 
+            type6_flag = 1;
+            break;
+        } else {
+
+            type5_flag = 0;
+            type6_flag = 0;
+        }
+
+
+    }
 }
 
 
@@ -412,29 +398,37 @@ float cur_circle(uint8 m) {
 
 void image_distinguish(void) {
     image_type img_type = none;         //默认种类为none
+    if (start == 0) {
+        img_type = IN_GARAGE;
+    }
+    if (img_type == IN_GARAGE) {
+        for (uint8 i = 80; i > 20; i--) {
+            if (image_cache[i][rs_std[80]] == 255 && image_cache[i - 1][rs_std[80]] == 0 &&
+                image_cache[i - 2][rs_std[80]] == 0) {
+                UPPER_GARAGE = i;
+                break;
+            }
+        }
+        if (UPPER_GARAGE > 55) {
+            turn_flag = 1;
+        }
+    }
+    if (img_type == IN_GARAGE && degree > 3000 && (road_type[0] == 0 || road_type[1] == 0)) { start = 1; }
 
     //出库结束且识别模式为0时
     if (img_mode == 0 && start == 1) {
         //当赛道的分段数为1时
         if (part_num == 1) {
-            if (part_type[0] == 3)       //出现3种类，说明是十字路口S1阶段
-                img_type = CRS_W_S1;
-            else if (part_type[0] == 0)  //出现0种类，说明是直道或小弯
+            if (part_type[0] == 0)  //出现0种类，说明是直道或小弯
                 img_type = STR_W;
         }
             //当赛道的分段数为2时
         else if (part_num == 2) {
-            if (part_type[0] == 0 && part_type[1] == 3)      //出现先直道0然后空白区域3，说明前方是十字路口S1阶段
-                img_type = CRS_W_S1;
-            else if (part_type[0] == 3 && part_type[1] == 0) //出现先空白区域3后直道0，说明前方是出十字的S2阶段
-                img_type = CRS_W_S2;
-            else if (part_type[0] == 0 && part_type[1] == 5 &&
-                     cur_circle(1) >= CUR_CIRTH)   //如果出现先0然后左边界突变5并且右边是直的边界，说明是预进入左环岛
+            if (part_type[0] == 0 && part_type[1] == 5 &&
+                cur_circle(1) >= CUR_CIRTH)   //如果出现先0然后左边界突变5并且右边是直的边界，说明是预进入左环岛
             {
                 img_type = LCIR_W_S1;
-
                 img_mode = 1;           //预进入环岛模式，修改图像识别模式为1
-
             } else if (part_type[0] == 0 && part_type[1] == 6 &&
                        cur_circle(0) >= CUR_CIRTH)   //如果出现先0然后右边界突变6并且左边是直的边界，说明是预进入右环岛
             {
@@ -452,36 +446,18 @@ void image_distinguish(void) {
         }
             //当赛道的分段数大于等于3时
         else {
-            if (part_type[0] == 0 && part_type[1] == 3)
-                img_type = CRS_W_S1;
-            else if (part_type[0] == 0 && (part_type[1] == 5 || part_type[1] == 6) &&
-                     part_type[2] == 3) //这是斜入十字的情形
-                img_type = CRS_W_S1;
-            else if (part_type[0] == 3 && part_type[1] == 0)
-                img_type = CRS_W_S2;
-            else if (part_type[0] == 3 && (part_type[1] == 5 || part_type[1] == 6) &&
-                     part_type[2] == 0) //这是斜出十字的情形
-                img_type = CRS_W_S2;
-            else if (part_type[0] == 0 && part_type[1] == 5 && cur_circle(1) >= CUR_CIRTH) {
+            if (part_type[0] == 0 && part_type[1] == 5 && cur_circle(1) >= CUR_CIRTH) {
                 img_type = LCIR_W_S1;
-
                 img_mode = 1;
-
             } else if (part_type[0] == 0 && part_type[1] == 6 && cur_circle(0) >= CUR_CIRTH) {
                 img_type = RCIR_W_S1;
-
                 img_mode = 1;
-
             } else if (part_type[1] == 0 && part_type[2] == 5 && cur_circle(1) >= CUR_CIRTH) {
                 img_type = LCIR_W_S1;
-
                 img_mode = 1;
-
             } else if (part_type[1] == 0 && part_type[2] == 6 && cur_circle(0) >= CUR_CIRTH) {
                 img_type = RCIR_W_S1;
-
                 img_mode = 1;
-
             } else if (part_type[0] == 0 && part_type[1] == 4 && part_index[0] - part_index[1] > 10) {
                 img_type = FOK_W_S1;
                 img_mode = 3;
@@ -499,12 +475,6 @@ void image_distinguish(void) {
             if (part_type[0] == 0) {
                 img_type = STR_W;
                 img_mode = 0;           //表示前方并不是环岛，需要退出1模式，返回0模式
-            } else if (part_type[0] == 3) {
-                img_type = CRS_W_S1;
-                img_mode = 0;
-            } else if (part_type[0] == -1) {
-                img_type = none;
-                img_mode = 0;
             }
         } else if (part_num == 2) {
             if (part_type[0] == 0 && part_type[1] == 5)
@@ -517,9 +487,6 @@ void image_distinguish(void) {
                 img_type = RCIR_W_S1;
             else if (part_type[0] == 0 && (part_type[1] == 1 || part_type[1] == 2)) {
                 img_type = CUR_W;
-                img_mode = 0;
-            } else if (part_type[0] == 0 && part_type[1] == 3) {
-                img_type = CRS_W_S1;
                 img_mode = 0;
             } else if (part_type[0] == 0 && part_type[1] == 4 && part_index[0] - part_index[1] > 10) {
                 img_type = FOK_W_S1;
@@ -541,24 +508,9 @@ void image_distinguish(void) {
                 img_type = RCIR_W_S2;
                 img_mode = 2;
                 cirsud_i = 0;
-            } else if (part_type[0] == -1) {
-                img_type = none;
-                img_mode = 0;
             }
         } else {
-            if (part_type[0] == 0 && part_type[1] == 3) {
-                img_type = CRS_W_S1;
-                img_mode = 0;
-            } else if (part_type[0] == 0 && (part_type[1] == 5 || part_type[1] == 6) && part_type[2] == 3) {
-                img_type = CRS_W_S1;
-                img_mode = 0;
-            } else if (part_type[0] == 3 && part_type[1] == 0) {
-                img_type = CRS_W_S2;
-                img_mode = 0;
-            } else if (part_type[0] == 3 && (part_type[1] == 5 || part_type[1] == 6) && part_type[2] == 0) {
-                img_type = CRS_W_S2;
-                img_mode = 0;
-            } else if (part_type[0] == 0 && part_type[1] == 5)
+            if (part_type[0] == 0 && part_type[1] == 5)
                 img_type = LCIR_W_S1;
             else if (part_type[0] == 0 && part_type[1] == 6)
                 img_type = RCIR_W_S1;
@@ -579,9 +531,6 @@ void image_distinguish(void) {
             } else if (part_type[0] == 2 && part_type[1] == 0) {
                 img_type = RCIR_W_S2;
                 img_mode = 2;
-            } else if (part_type[0] == -1) {
-                img_type = none;
-                img_mode = 0;
             }
         }
     }
@@ -646,6 +595,7 @@ void image_distinguish(void) {
             img_type = STR_W;
             img_mode = 0;
         } else if (image_para.imgtype == RCIR_W_S7 && (part_type[0] == 0 || part_type[0] == 1)) {
+            enter_flag = 1;
             img_type = STR_W;
             img_mode = 0;
         }
@@ -683,15 +633,11 @@ void image_distinguish(void) {
         //当图像识别模式为3（三岔）且已经出库，三岔不需要像环岛一样的确认步骤是因为，图像识别把三岔放在了最后，因此它已经经过了多次确认
     else if (img_mode == 3 && start == 1) {
 
-        if (a > 200) {
-            img_mode = 0;
-            img_type = STR_W;
-        }
+
         if (image_para.imgtype == FOK_W_S1 &&
             upside >= UPSIDE_M)   //当三岔S2阶段从中间向上查找，查找到的边界的i值比预定值大时，说明到了适当位置了，可以进入S3阶段，用来停车，预定值可以调整停车的位置
         {
             img_type = FOK_W_S3;
-            FOK_S3_FLAG = 1;
         } else { img_type = FOK_W_S1; }
         if (image_para.imgtype == FOK_W_S3 && (part_type[0] == 0 || part_type[0] == 1) && part_type[1] == 4) {
             FOK_OUT_FLAG_1 = 1;
@@ -709,13 +655,13 @@ void image_distinguish(void) {
             img_type = STR_W;
         }
         if (image_para.imgtype == FOK_W_S3) {
-            a++;
+            s3_cnt++;
         }
-        if (a > 30) {
+        if (s3_cnt > 30) {
             img_mode = 0;
             FOK_OUT_FLAG_1 = 0;
             FOK_OUT_FLAG_2 = 0;
-
+            s3_cnt = 0;
             img_type = STR_W;
         }
 
@@ -758,7 +704,7 @@ float offset_process(void) {
 
     if (image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
         image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
-        image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
+        image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S2 ||
         image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S4 ||
         image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6 || break_hangshu > 35) {
         offset_si = 75;
@@ -767,8 +713,8 @@ float offset_process(void) {
 //        offset_ei = break_hangshu;
 //        offset_si = break_hangshu + 15;
     } else if (image_para.imgtype == LCIR_W_S3 || image_para.imgtype == RCIR_W_S3) {
-        offset_si = 70;
-        offset_ei = 50;
+        offset_si = 100;
+        offset_ei = 90;
     } else {
         offset_si = 55;
         offset_ei = 35;
@@ -777,11 +723,13 @@ float offset_process(void) {
         image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
         image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 || image_para.imgtype == RCIR_W_S2_5 ||
         image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 || image_para.imgtype == RCIR_W_S5) {
-        bench_v = 55;
+        bench_v = 50;
     } else {
-        bench_v = 70;
+        bench_v = 55;
     }
 
+    Pixle_ADD_My_hengxian(offset_ei);
+    Pixle_ADD_My_hengxian(offset_si);
     //处于坡道时行数取低，防止因为远处的图像而在坡顶掉落
 //    if(flag_ramp > 20)
 //    {
@@ -837,35 +785,6 @@ float offset_process(void) {
                 weight += 1;
             }
         }
-    } else if (image_para.imgtype == CRS_W_S1) //十字路口S1阶段
-    {
-        //全图搜索，用双边界的各行相对于图像中线的偏差作为位置偏差值
-        for (i = MT9V03X_H - 1; i >= 10; i -= 1) {
-            if (road_type[i] == 0) {
-                offset += (float) (centerline[i] - MT9V03X_W / 2);
-                weight += 1;
-            }
-        }
-
-        //十字偏差限制
-        if (offset > CRS_OFFSET_TH * weight)
-            offset = CRS_OFFSET_TH * weight;
-        else if (offset < -CRS_OFFSET_TH * weight)
-            offset = -CRS_OFFSET_TH * weight;
-    } else if (image_para.imgtype == CRS_W_S2) //十字路口S2阶段
-    {
-        for (i = MT9V03X_H - 1; i >= 10; i -= 1) {
-            if (road_type[i] == 0) {
-                offset += (float) (centerline[i] - MT9V03X_W / 2);
-                weight += 1;
-            }
-        }
-
-        //十字偏差限制
-        if (offset > CRS_OFFSET_TH * weight)
-            offset = 10 * weight;
-        else if (offset < -10 * weight)
-            offset = -CRS_OFFSET_TH * weight;
     } else if (image_para.imgtype == LCIR_W_S1 || image_para.imgtype == LCIR_W_S6 ||
                image_para.imgtype == LCIR_W_S7)  //左环部分阶段按照右边界循迹
     {
@@ -873,10 +792,7 @@ float offset_process(void) {
             offset += (float) (rightline[i] - rs_std[i]);
             weight += 1;
         }
-        if (image_para.imgtype == LCIR_W_S6 && offset / weight > 40) {
-            offset = -30;
-            weight = 1;
-        }
+
     } else if (image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S6 ||
                image_para.imgtype == RCIR_W_S7)  //右环部分阶段按照左边界循迹
     {
@@ -889,45 +805,48 @@ float offset_process(void) {
 
         for (i = offset_si; i >= offset_ei; i -= 1) {
 
-            offset += (float) (rightline[i] - rs_std[i] - 10);
+            offset += (float) (rightline[i] - rs_std[i]);
             weight += 1;
 
         }
     } else if (image_para.imgtype == LCIR_W_S2_5)   //左环S2与S2_5阶段在部分时候按照左边界循迹，部分时候按照右边界循迹
     {
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            offset += (float) (leftline[i] - ls_std[i] - 15);
-            weight += 1;
+            if (leftline[i] - leftline[i + 1] < 0 && part_type[0] == 0) {
+                offset += (float) (leftline[i] - ls_std[i]);
+            } else {
+                offset += (float) (rightline[i] - rs_std[i]);
+                weight += 1;
+            }
         }
     } else if (image_para.imgtype == RCIR_W_S2) {
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            offset += (float) (leftline[i] - ls_std[i] + 10);
+            offset += (float) (leftline[i] - ls_std[i]);
             weight += 1;
         }
 
     } else if (image_para.imgtype == RCIR_W_S2_5) {
         for (i = offset_si; i >= offset_ei; i -= 1) {
-            offset += (float) (rightline[i] - rs_std[i] + 15);
-            weight += 1;
+            if (rightline[i] - rightline[i + 1] > 0 && part_type[0] == 0) {
+                offset += (float) (rightline[i] - rs_std[i]);
+            } else {
+                offset += (float) (leftline[i] - ls_std[i]);
+                weight += 1;
+            }
         }
     } else if (image_para.imgtype == LCIR_W_S3) {
 
-        if (part_type[1] == 7)
-            cirsud_i = part_index[0] - 1;
         for (i = offset_si; i >= offset_ei; i -= 1) {
 
-            offset += (float) (leftline[i] - ls_std[i] - 10);
+            offset += (float) (leftline[i] - ls_std[i]);
             weight += 1;
-
         }
 
     } else if (image_para.imgtype == RCIR_W_S3) {
-        if (part_type[1] == 8)
-            cirsud_i = part_index[0] - 1;
+
         for (i = offset_si; i >= offset_ei; i -= 1) {
 
-
-            offset += (float) (rightline[i] - rs_std[i] + 10);
+            offset += (float) (rightline[i] - rs_std[i]);
             weight += 1;
 
         }
@@ -1066,28 +985,50 @@ float offset_process(void) {
         if (offset < -5)offset = -5;
     }
     if (image_para.imgtype == GARAGE_R) {
-        bench_v = 30;
-        float k = 0;
-        for (uint8 k = 30; k < 80; ++k) {
-            if (rightline[k + 2] - rightline[k] > 10) {
-                p = k;
+        bench_v = 20;
+        float k;
+        for (uint8 j = 30; j < 80; ++j) {
+            if (rightline[j + 2] - rightline[j] > 10) {
+                p = j;
                 break;
             }
         }
         k = (rightline[p] - leftline[119]) / (119 - p);
-        for (int l = 119; l > p + 1; --l) {
+        for (uint8 l = 119; l > p + 1; --l) {
             leftline[l - 1] = (int) (leftline[l] + k);
             centerline[l - 1] = (int) (rightline[l - 1] + leftline[l - 1]) / 2;
         }
-        for (int i = p; i < p + 10; ++i) {
-            offset += (float) (centerline[i] - MT9V03X_W / 2);
+        for (uint8 tmp = p; tmp < p + 10; ++tmp) {
+            offset += (float) (centerline[tmp] - MT9V03X_W / 2);
             weight += 1;
         }
     }
-
-    if (image_para.imgtype == GARAGE_L) {
+    if (image_para.imgtype == IN_GARAGE && turn_flag == 0) {
+        bench_v = 20;
+        offset = 0;
+    }
+    if (image_para.imgtype == IN_GARAGE && turn_flag == 1) {
+        bench_v = 20;
         offset = -50;
-        bench_v = 1;
+    }
+    if (image_para.imgtype == GARAGE_L) {
+        bench_v = 20;
+        float k;
+        for (uint8 j = 30; j < 80; ++j) {
+            if (leftline[j + 2] - leftline[j] > 10) {
+                p = j;
+                break;
+            }
+        }
+        k = (leftline[p] - rightline[119]) / (119 - p);
+        for (uint8 l = 119; l > p + 1; --l) {
+            rightline[l - 1] = (int) (rightline[l] + k);
+            centerline[l - 1] = (int) (rightline[l - 1] + leftline[l - 1]) / 2;
+        }
+        for (uint8 tmp = p; tmp < p + 10; ++tmp) {
+            offset += (float) (centerline[tmp] - MT9V03X_W / 2);
+            weight += 1;
+        }
     }
     if (image_para.imgtype == FINISH) {
         offset = 0;
@@ -1110,10 +1051,10 @@ float offset_process(void) {
 void calc_angle() {
     if (image_para.imgtype == LCIR_W_S1 || image_para.imgtype == LCIR_W_S2 || image_para.imgtype == LCIR_W_S2_5 ||
         image_para.imgtype == LCIR_W_S3 || image_para.imgtype == LCIR_W_S4 || image_para.imgtype == LCIR_W_S5 ||
-        image_para.imgtype == LCIR_W_S6 || image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
+        image_para.imgtype == RCIR_W_S1 || image_para.imgtype == RCIR_W_S2 ||
         image_para.imgtype == RCIR_W_S2_5 || image_para.imgtype == RCIR_W_S3 || image_para.imgtype == RCIR_W_S4 ||
-        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == RCIR_W_S6 || image_para.imgtype == GARAGE_R ||
-        image_para.imgtype == GARAGE_L) {
+        image_para.imgtype == RCIR_W_S5 || image_para.imgtype == GARAGE_R ||
+        image_para.imgtype == GARAGE_L || image_para.imgtype == IN_GARAGE) {
         degree += yaw_rate;
     } else {
         degree = 0;
@@ -1137,7 +1078,7 @@ void check_starting_line() {
 
 
                 } else {
-                    cursor++;;
+                    cursor++;
                 }
             } else {
                 if (cursor >= 2 && cursor <= 7) {
@@ -1168,9 +1109,7 @@ void check_starting_line() {
 }
 
 void Img_type_test() {
-
     Boundary_part();
-
     image_distinguish();
     offset_process();
     calc_angle();
@@ -1240,7 +1179,6 @@ int GetOTSU(unsigned char tmImage[MT9V03X_H][MT9V03X_W]) {
 //////////图像解压////////////
 int image_threshold[3] = {0, 0, 0};
 int threshold;
-uint8 image_cache1[120][188];
 
 void img_extract() {
     image_threshold[0] = GetOTSU(&mt9v03x_image[0][0]);

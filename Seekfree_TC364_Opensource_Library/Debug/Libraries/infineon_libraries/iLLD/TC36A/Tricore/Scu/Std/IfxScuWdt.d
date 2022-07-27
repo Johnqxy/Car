@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxScuWdt.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Scu/Std/IfxScuWdt.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Scu/Std/IfxScuWdt.c :
 IfxScuWdt.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Scu/Std/IfxScuWdt.h

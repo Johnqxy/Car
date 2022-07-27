@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 led.o :	../CODE/led.c
 ../CODE/led.c :
 led.o :	../CODE/led.h
@@ -436,14 +420,8 @@ led.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 led.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-led.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-led.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 led.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-led.o :	../CODE/led.h
-../CODE/led.h :
 led.o :	../CODE/button.h
 ../CODE/button.h :
 led.o :	../CODE/Voltage_Acquisition.h

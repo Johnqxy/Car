@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Debug_UI.o :	../CODE/Debug_UI.c
 ../CODE/Debug_UI.c :
 Debug_UI.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Debug_UI.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Debug_UI.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Debug_UI.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Debug_UI.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Debug_UI.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Debug_UI.o :	../CODE/led.h
-../CODE/led.h :
-Debug_UI.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Debug_UI.o :	../CODE/button.h
 ../CODE/button.h :

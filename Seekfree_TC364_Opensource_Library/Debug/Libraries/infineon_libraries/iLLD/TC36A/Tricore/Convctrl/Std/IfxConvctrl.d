@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxConvctrl.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Convctrl/Std/IfxConvctrl.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Convctrl/Std/IfxConvctrl.c :
 IfxConvctrl.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Convctrl/Std/IfxConvctrl.h

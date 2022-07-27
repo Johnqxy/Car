@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Infrared_receiving_tube.o :	../CODE/Infrared_receiving_tube.c
 ../CODE/Infrared_receiving_tube.c :
 Infrared_receiving_tube.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Infrared_receiving_tube.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Infrared_receiving_tube.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Infrared_receiving_tube.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Infrared_receiving_tube.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Infrared_receiving_tube.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Infrared_receiving_tube.o :	../CODE/led.h
-../CODE/led.h :
-Infrared_receiving_tube.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Infrared_receiving_tube.o :	../CODE/button.h
 ../CODE/button.h :

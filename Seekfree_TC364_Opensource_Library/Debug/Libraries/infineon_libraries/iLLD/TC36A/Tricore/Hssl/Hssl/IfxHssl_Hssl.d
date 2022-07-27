@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxHssl_Hssl.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Hssl/Hssl/IfxHssl_Hssl.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Hssl/Hssl/IfxHssl_Hssl.c :
 IfxHssl_Hssl.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Hssl/Hssl/IfxHssl_Hssl.h

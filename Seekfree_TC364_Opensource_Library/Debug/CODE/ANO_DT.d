@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 ANO_DT.o :	../CODE/ANO_DT.c
 ../CODE/ANO_DT.c :
 ANO_DT.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ ANO_DT.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 ANO_DT.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-ANO_DT.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-ANO_DT.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 ANO_DT.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-ANO_DT.o :	../CODE/led.h
-../CODE/led.h :
-ANO_DT.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 ANO_DT.o :	../CODE/button.h
 ../CODE/button.h :

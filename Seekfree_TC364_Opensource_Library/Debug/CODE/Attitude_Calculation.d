@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Attitude_Calculation.o :	../CODE/Attitude_Calculation.c
 ../CODE/Attitude_Calculation.c :
 Attitude_Calculation.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Attitude_Calculation.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Attitude_Calculation.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Attitude_Calculation.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Attitude_Calculation.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Attitude_Calculation.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Attitude_Calculation.o :	../CODE/led.h
-../CODE/led.h :
-Attitude_Calculation.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Attitude_Calculation.o :	../CODE/button.h
 ../CODE/button.h :

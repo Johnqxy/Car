@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 LQ_RDA5807.o :	../Libraries/seekfree_peripheral/LQ_RDA5807.c
 ../Libraries/seekfree_peripheral/LQ_RDA5807.c :
 LQ_RDA5807.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Port/Std/IfxPort.h
@@ -434,15 +418,7 @@ LQ_RDA5807.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 LQ_RDA5807.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-LQ_RDA5807.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-LQ_RDA5807.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 LQ_RDA5807.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-LQ_RDA5807.o :	../CODE/led.h
-../CODE/led.h :
-LQ_RDA5807.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 LQ_RDA5807.o :	../CODE/button.h
 ../CODE/button.h :

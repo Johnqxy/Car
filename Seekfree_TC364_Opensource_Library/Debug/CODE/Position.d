@@ -2,18 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Position.o :	../CODE/Position.c
 ../CODE/Position.c :
 Position.o :	../Libraries/seekfree_libraries/headfile.h
@@ -428,15 +416,7 @@ Position.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Position.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Position.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Position.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Position.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Position.o :	../CODE/led.h
-../CODE/led.h :
-Position.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Position.o :	../CODE/button.h
 ../CODE/button.h :

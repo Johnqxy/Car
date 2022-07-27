@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 SEEKFREE_MT9V03X.o :	../Libraries/seekfree_peripheral/SEEKFREE_MT9V03X.c
 ../Libraries/seekfree_peripheral/SEEKFREE_MT9V03X.c :
 SEEKFREE_MT9V03X.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Dma/Std/IfxDma.h
@@ -458,15 +442,7 @@ SEEKFREE_MT9V03X.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 SEEKFREE_MT9V03X.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-SEEKFREE_MT9V03X.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-SEEKFREE_MT9V03X.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 SEEKFREE_MT9V03X.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-SEEKFREE_MT9V03X.o :	../CODE/led.h
-../CODE/led.h :
-SEEKFREE_MT9V03X.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 SEEKFREE_MT9V03X.o :	../CODE/button.h
 ../CODE/button.h :

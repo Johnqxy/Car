@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxSent_Sent.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Sent/Sent/IfxSent_Sent.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Sent/Sent/IfxSent_Sent.c :
 IfxSent_Sent.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Sent/Sent/IfxSent_Sent.h

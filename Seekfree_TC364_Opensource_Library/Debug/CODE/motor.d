@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 motor.o :	../CODE/motor.c
 ../CODE/motor.c :
 motor.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ motor.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 motor.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-motor.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-motor.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 motor.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-motor.o :	../CODE/led.h
-../CODE/led.h :
-motor.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 motor.o :	../CODE/button.h
 ../CODE/button.h :

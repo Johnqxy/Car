@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxPmsEvr.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Pms/Std/IfxPmsEvr.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Pms/Std/IfxPmsEvr.c :
 IfxPmsEvr.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Pms/Std/IfxPmsEvr.h

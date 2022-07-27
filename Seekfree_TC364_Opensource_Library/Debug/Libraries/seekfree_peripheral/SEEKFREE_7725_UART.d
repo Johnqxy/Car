@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 SEEKFREE_7725_UART.o :	../Libraries/seekfree_peripheral/SEEKFREE_7725_UART.c
 ../Libraries/seekfree_peripheral/SEEKFREE_7725_UART.c :
 SEEKFREE_7725_UART.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Dma/Std/IfxDma.h
@@ -462,15 +446,7 @@ SEEKFREE_7725_UART.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 SEEKFREE_7725_UART.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-SEEKFREE_7725_UART.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-SEEKFREE_7725_UART.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 SEEKFREE_7725_UART.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-SEEKFREE_7725_UART.o :	../CODE/led.h
-../CODE/led.h :
-SEEKFREE_7725_UART.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 SEEKFREE_7725_UART.o :	../CODE/button.h
 ../CODE/button.h :

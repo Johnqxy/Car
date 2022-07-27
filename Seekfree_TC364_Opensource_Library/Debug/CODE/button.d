@@ -416,15 +416,7 @@ button.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 button.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-button.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-button.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 button.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-button.o :	../CODE/led.h
-../CODE/led.h :
-button.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 button.o :	../CODE/button.h
 ../CODE/button.h :

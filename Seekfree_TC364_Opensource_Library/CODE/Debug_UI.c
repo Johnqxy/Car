@@ -667,13 +667,13 @@ void dial_scan(void)
       ips114_showint32(100,3,error_x,5);
 //      oled_show_Pid();
       oled_show_base_speed();
-      ips114_showint32(0,5,Left_inductance,4);
+//      ips114_showint32(0,5,Left_inductance,4);
       ips114_showstr(95,5,"Inductive");
-      ips114_showint32(190,5,Right_inductance,4);
+//      ips114_showint32(190,5,Right_inductance,4);
       ips114_showstr(0,6,"average_inductance");
-      ips114_showint32(190,6,average_inductance,3);
+//      ips114_showint32(190,6,average_inductance,3);
       ips114_showstr(0,7,"Inductive_error");
-      ips114_showfloat(190,7,Inductive_error,1,2);
+//      ips114_showfloat(190,7,Inductive_error,1,2);
 
 
 

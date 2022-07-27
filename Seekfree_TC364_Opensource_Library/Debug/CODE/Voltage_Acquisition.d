@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Voltage_Acquisition.o :	../CODE/Voltage_Acquisition.c
 ../CODE/Voltage_Acquisition.c :
 Voltage_Acquisition.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ Voltage_Acquisition.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 Voltage_Acquisition.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-Voltage_Acquisition.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-Voltage_Acquisition.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 Voltage_Acquisition.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-Voltage_Acquisition.o :	../CODE/led.h
-../CODE/led.h :
-Voltage_Acquisition.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 Voltage_Acquisition.o :	../CODE/button.h
 ../CODE/button.h :

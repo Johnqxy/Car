@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 Ifx_AngleTrkF32.o :	../Libraries/infineon_libraries/Service/CpuGeneric/SysSe/Math/Ifx_AngleTrkF32.c
 ../Libraries/infineon_libraries/Service/CpuGeneric/SysSe/Math/Ifx_AngleTrkF32.c :
 Ifx_AngleTrkF32.o :	../Libraries/infineon_libraries/Service/CpuGeneric/SysSe/Math/Ifx_AngleTrkF32.h

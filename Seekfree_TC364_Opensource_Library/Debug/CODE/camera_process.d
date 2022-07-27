@@ -2,22 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 camera_process.o :	../CODE/camera_process.c
 ../CODE/camera_process.c :
 camera_process.o :	../Libraries/seekfree_libraries/headfile.h
@@ -432,15 +416,7 @@ camera_process.o :	../CODE/ANO_DT.h
 ../CODE/ANO_DT.h :
 camera_process.o :	../CODE/Voltage_Acquisition.h
 ../CODE/Voltage_Acquisition.h :
-camera_process.o :	../CODE/Inductive_Acquisition.h
-../CODE/Inductive_Acquisition.h :
-camera_process.o :	../Libraries/seekfree_libraries/common/common.h
-../Libraries/seekfree_libraries/common/common.h :
 camera_process.o :	../CODE/Camera.h
 ../CODE/Camera.h :
-camera_process.o :	../CODE/led.h
-../CODE/led.h :
-camera_process.o :	../CODE/Voltage_Acquisition.h
-../CODE/Voltage_Acquisition.h :
 camera_process.o :	../CODE/button.h
 ../CODE/button.h :

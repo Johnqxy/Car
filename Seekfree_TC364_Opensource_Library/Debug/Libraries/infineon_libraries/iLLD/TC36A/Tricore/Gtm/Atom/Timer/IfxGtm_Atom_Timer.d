@@ -10,22 +10,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 IfxGtm_Atom_Timer.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Atom/Timer/IfxGtm_Atom_Timer.c
 ../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Atom/Timer/IfxGtm_Atom_Timer.c :
 IfxGtm_Atom_Timer.o :	../Libraries/infineon_libraries/iLLD/TC36A/Tricore/Gtm/Atom/Timer/IfxGtm_Atom_Timer.h
